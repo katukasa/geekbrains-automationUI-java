@@ -23,4 +23,5 @@
             <version>${selenium-java.version}</version>
         </dependency>
     </dependencies>
+
 </project>
