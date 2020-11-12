@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
@@ -17,11 +18,13 @@ public class TestCase1 {
     private static final String projectsMenu = "//ul[@class='nav nav-multilevel main-menu']/li[@class='dropdown']/a/span[contains(., 'Проекты')]";
     private static final String projectsSubMenu = "//span[@class='title' and text()='Мои проекты']";
     private static final String button = "div[class='pull-left btn-group icons-holder']";
+    private static final String contact = "//div[@class='select2-result-label' and text()='Мартынов Николай']";
+    private static final String company ="//div[@class='select2-result-label' and text()='Test Organisation_10']";
+    private static final String saveButton = "//button[@class='btn btn-success action-button']";
 
     public static void main(String[] args) throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         driver = new ChromeDriver();
-        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
 //      Step 1: Авторизоваться на сайте CRM
@@ -38,17 +41,37 @@ public class TestCase1 {
         new WebDriverWait(driver, 5).until(ExpectedConditions.urlContains("/create"));
 
 //      Step 4: Заполнить обязательные поля:
-//      Наименование (text)
-        driver.findElement(By.xpath("//input[@name='crm_project[name]']")).sendKeys("kat_project1");
-//      Организация (drop down)
-//      Основное контактное лицо (drop down)
-//      Подразделение (drop down)
-//      Куратор проекта (drop down)
-//      Руководитель проекта (drop down)
-//      Администратор проекта (drop down) - поле без звездочки в CRM
-//      Менеджер (drop down)
+//      Наименование (text) - works only in debug mode :(
+        driver.findElement(By.name("crm_project[name]")).sendKeys("kat_project1");
 
-//        Step 5: Нажать на кнопку “Сохранить и закрыть”
+//      Организация (drop down) - через селекторы не работало, какой-то странный список, не такой как остальные
+        driver.findElement(By.xpath("//span[@class='select2-chosen' and text()='Укажите организацию']")).click();
+        new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(company))));
+        driver.findElement(By.xpath(company)).click();
+
+//      Основное контактное лицо (drop down) - available only when "Организация" field is filled, тоже не работает через селекторы
+        driver.findElement(By.xpath("//div[@class='select2-container select2']")).click();
+        new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(contact))));
+        driver.findElement(By.xpath(contact)).click();
+
+//      Подразделение (drop down) - done
+        Select businessUnitDropDown = new Select(driver.findElement(By.name("crm_project[businessUnit]")));
+        businessUnitDropDown.selectByValue("1");
+
+//      Куратор проекта (drop down) - done
+        Select curatorDropDown = new Select(driver.findElement(By.xpath("//select[@name='crm_project[curator]']")));
+        curatorDropDown.selectByValue("5");
+
+//      Руководитель проекта (drop down)
+        Select headDropDown = new Select(driver.findElement(By.xpath("//select[@name='crm_project[rp]']")));
+        headDropDown.selectByValue("5");
+
+//      Менеджер (drop down)
+        Select managerDropDown = new Select(driver.findElement(By.xpath("//select[@name='crm_project[manager]']")));
+        managerDropDown.selectByValue("5");
+
+//      Step 5: Нажать на кнопку “Сохранить и закрыть”
+        driver.findElement(By.xpath(saveButton)).click();
 
         Thread.sleep(6000);
 
