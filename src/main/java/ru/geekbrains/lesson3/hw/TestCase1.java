@@ -1,6 +1,7 @@
 package ru.geekbrains.lesson3.hw;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,8 +19,8 @@ public class TestCase1 {
     private static final String projectsMenu = "//ul[@class='nav nav-multilevel main-menu']/li[@class='dropdown']/a/span[contains(., 'Проекты')]";
     private static final String projectsSubMenu = "//span[@class='title' and text()='Мои проекты']";
     private static final String button = "div[class='pull-left btn-group icons-holder']";
-    private static final String contact = "//div[@class='select2-result-label' and text()='Мартынов Николай']";
-    private static final String company ="//div[@class='select2-result-label' and text()='Test Organisation_10']";
+    private static final String contact = "//*[@id='select2-drop']/div/input";
+    private static final String company = "//*[@id='select2-drop']/div/input";
     private static final String saveButton = "//button[@class='btn btn-success action-button']";
 
     public static void main(String[] args) throws InterruptedException {
@@ -42,17 +43,19 @@ public class TestCase1 {
 
 //      Step 4: Заполнить обязательные поля:
 //      Наименование (text) - works only in debug mode :(
-        driver.findElement(By.name("crm_project[name]")).sendKeys("kat_project1");
+        driver.findElement(By.name("crm_project[name]")).sendKeys("kat_project2");
 
 //      Организация (drop down) - через селекторы не работало, какой-то странный список, не такой как остальные
         driver.findElement(By.xpath("//span[@class='select2-chosen' and text()='Укажите организацию']")).click();
         new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(company))));
-        driver.findElement(By.xpath(company)).click();
+        driver.findElement(By.xpath(company)).sendKeys("Test Organisation_10");
+        driver.findElement(By.xpath(company)).sendKeys(Keys.ENTER);
 
 //      Основное контактное лицо (drop down) - available only when "Организация" field is filled, тоже не работает через селекторы
         driver.findElement(By.xpath("//div[@class='select2-container select2']")).click();
         new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(contact))));
-        driver.findElement(By.xpath(contact)).click();
+        driver.findElement(By.xpath(contact)).sendKeys("Мартынов Николай");
+        driver.findElement(By.xpath(contact)).sendKeys(Keys.ENTER);
 
 //      Подразделение (drop down) - done
         Select businessUnitDropDown = new Select(driver.findElement(By.name("crm_project[businessUnit]")));
@@ -72,8 +75,6 @@ public class TestCase1 {
 
 //      Step 5: Нажать на кнопку “Сохранить и закрыть”
         driver.findElement(By.xpath(saveButton)).click();
-
-        Thread.sleep(6000);
 
         tearDown();
     }
