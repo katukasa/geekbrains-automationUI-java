@@ -33,8 +33,8 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public void checkUrt(String baseUrl) {
-        assertThat(driver.getCurrentUrl()).isEqualTo(BASE_URL);
-    }
+//    public void checkUrt(String baseUrl) {
+//        assertThat(driver.getCurrentUrl()).isEqualTo(BASE_URL);
+//    }
 
 }

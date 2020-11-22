@@ -14,9 +14,9 @@ public class LoginTest extends BaseTest {
         new LoginPage(driver)
                 .enterLogin(STUDENT_LOGIN)
                 .enterPassword(STUDENT_PASSWORD)
-                .clickLoginButton()
-                .checkUrt(BASE_URL);
-//        assertThat(driver.getCurrentUrl()).isEqualTo(BASE_URL);
+                .clickLoginButton();
+//                .checkUrt(BASE_URL);
+        assertThat(driver.getCurrentUrl()).isEqualTo(BASE_URL);
     }
 
 
