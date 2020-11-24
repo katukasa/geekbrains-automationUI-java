@@ -18,23 +18,26 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = ".//button[@name='_submit']")
     private WebElement buttonSingIn;
 
-    public LoginPage enterLogin(String login){
-        inputLogin.sendKeys(login);
-        return this;
-    }
-
-    public LoginPage enterPassword(String password){
-        inputPassword.sendKeys(password);
-        return this;
-    }
-
-    public LoginPage clickLoginButton(){
-        buttonSingIn.click();
-        return this;
-    }
-
-//    public void checkUrt(String baseUrl) {
-//        assertThat(driver.getCurrentUrl()).isEqualTo(BASE_URL);
+//    public LoginPage enterLogin(String login){
+//        inputLogin.sendKeys(login);
+//        return this;
 //    }
+//
+//    public LoginPage enterPassword(String password){
+//        inputPassword.sendKeys(password);
+//        return this;
+//    }
+//
+//    public HomePage clickLoginButton(){
+//        buttonSingIn.click();
+//        return new HomePage(driver);
+//    }
+
+    public HomePage authorization(String login, String password){
+        inputLogin.sendKeys(login);
+        inputPassword.sendKeys(password);
+        buttonSingIn.click();
+        return new HomePage(driver);
+    }
 
 }

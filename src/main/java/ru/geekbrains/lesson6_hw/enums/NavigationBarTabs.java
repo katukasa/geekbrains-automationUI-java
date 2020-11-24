@@ -11,7 +11,7 @@ public enum NavigationBarTabs {
     PREMIUMS(".//span[@class='title' and text()='Премии']"),
     DICTIONARIES(".//span[@class='title' and text()='Справочники']"),
     REPORTS(".//span[@class='title' and text()='Отчеты']"),
-    SYSTEM("*.//li[@class='module-hide dropdown']/a/span[@class='title']"),
+    SYSTEM("*//li[@class='mobile-hide dropdown']/a/span[@class='title']"),
     HELP(".//span[@class='title' and text()='Помощь']");
 
     private final By by;

@@ -108,7 +108,7 @@ public class TestCase1 {
         WebElement loginButton = driver.findElement(By.xpath(".//button[@name='_submit']"));
         loginButton.click();
 
-//      Пользователь видит страницу Панель Инструментов
+//      Пользователь видит страницу Панель Инструментов - added to HomePage
         new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(panelIntsHeader))));
         Assertions.assertTrue(driver.findElement(By.xpath(panelIntsHeader)).isDisplayed());
     }
