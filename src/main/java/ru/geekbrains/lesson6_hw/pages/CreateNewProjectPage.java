@@ -50,18 +50,24 @@ public class CreateNewProjectPage extends BasePage {
         return this;
     }
 
-    public CreateNewProjectPage fillReqFields(){
+    public CreateNewProjectPage fillReqFields() throws InterruptedException {
 //      Наименование
         projectNameField.sendKeys(new_project_name);
 
 //      Организация
+        Thread.sleep(5000);
         companyField.click();
+        Thread.sleep(5000);
+//        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(companySearchField));
         companySearchField.sendKeys(company_name);
+        Thread.sleep(5000);
         companySearchField.sendKeys(Keys.ENTER);
 
 //      Основное контактное лицо
         contactField.click();
+        Thread.sleep(5000);
         contactSearchField.sendKeys(contact_name);
+        Thread.sleep(5000);
         contactSearchField.sendKeys(Keys.ENTER);
 
 //      Подразделение
@@ -97,6 +103,8 @@ public class CreateNewProjectPage extends BasePage {
                     )
             );
             fields.forEach(xpath -> {
+                new WebDriverWait(driver, 5)
+                        .until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(xpath))));
                 WebElement element = driver.findElement(By.xpath(xpath));
                 Assertions.assertTrue(element.isDisplayed());
             });

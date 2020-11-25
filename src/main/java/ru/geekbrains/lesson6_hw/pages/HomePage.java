@@ -30,16 +30,12 @@ public class HomePage extends BasePage {
         return navigationBar;
     }
 
-//    public void checkBaseUrl(){
-//        assertThat(driver.getCurrentUrl()).isEqualTo(BASE_URL);
-//    }
-
     public HomePage checkBaseUrl(){
         assertThat(driver.getCurrentUrl()).isEqualTo(BASE_URL);
         return this;
     }
 
-    public MyProjectsPage openMyProjecstPage(){
+    public MyProjectsPage openMyProjectsPage(){
         projectsMenu.click();
         projectsSubMenu.click();
         return new MyProjectsPage(driver);

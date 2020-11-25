@@ -3,6 +3,8 @@ package ru.geekbrains.lesson6_hw.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.geekbrains.lesson6_hw.base.BasePage;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,6 +25,7 @@ public class MyProjectsPage extends BasePage {
     }
 
     public CreateNewProjectPage clickOnCreateNewProjectButton(){
+        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(createProjectButton));
         createProjectButton.click();
         return new CreateNewProjectPage(driver);
     }
