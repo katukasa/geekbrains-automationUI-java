@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.geekbrains.lesson6_hw.base.BasePage;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,8 +23,9 @@ public class MyProjectsPage extends BasePage {
         return this;
     }
 
-    public CreateNewProjectPage clickOnCreateNewProjectButton(){
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(createProjectButton));
+    public CreateNewProjectPage clickOnCreateNewProjectButton() throws InterruptedException {
+//        wait10seconds.until(ExpectedConditions.visibilityOf(createProjectButton));
+        Thread.sleep(5000);
         createProjectButton.click();
         return new CreateNewProjectPage(driver);
     }

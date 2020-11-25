@@ -6,8 +6,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
     public WebDriver driver;
-    WebDriverWait wait10seconds;
-    WebDriverWait wait30seconds;
+    public WebDriverWait wait10seconds;
+    public WebDriverWait wait30seconds;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
