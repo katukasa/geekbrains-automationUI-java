@@ -18,8 +18,4 @@ public class AllProjectsPage extends BasePage {
         return this;
     }
 
-    public void checkNewProjectCreated(){
-
-    }
-
 }

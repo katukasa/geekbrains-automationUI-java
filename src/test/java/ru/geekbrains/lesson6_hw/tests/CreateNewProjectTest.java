@@ -24,8 +24,6 @@ public class CreateNewProjectTest extends BaseTest {
                 .checkFields()
 
                 .saveNewProject()
-                .checkAllProjectsPageUrl()
-        ;
-
+                .checkAllProjectsPageUrl();
     }
 }

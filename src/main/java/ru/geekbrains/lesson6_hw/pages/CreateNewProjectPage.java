@@ -6,9 +6,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.geekbrains.lesson6_hw.base.BasePage;
 
 import java.util.ArrayList;
@@ -104,8 +102,6 @@ public class CreateNewProjectPage extends BasePage {
                     )
             );
             fields.forEach(xpath -> {
-//                new WebDriverWait(driver, 5)
-//                        .until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(xpath))));
                 WebElement element = driver.findElement(By.xpath(xpath));
                 Assertions.assertTrue(element.isDisplayed());
             });

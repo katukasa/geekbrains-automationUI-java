@@ -3,7 +3,6 @@ package ru.geekbrains.lesson6_hw.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.geekbrains.lesson6_hw.base.BasePage;
 
 import static org.assertj.core.api.Assertions.assertThat;
