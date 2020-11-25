@@ -18,7 +18,7 @@ public class MyProjectsPage extends BasePage {
     private WebElement createProjectButton;
 
     public MyProjectsPage checkMyProjectsUrl(){
-        assertThat(driver.getCurrentUrl()).isEqualTo(BASE_URL + PROJECTS_PATH + MY_PROJECTS_PATH);
+        assertThat(driver.getCurrentUrl()).isEqualTo(BASE_URL + projects_path + my_path);
         return this;
     }
 

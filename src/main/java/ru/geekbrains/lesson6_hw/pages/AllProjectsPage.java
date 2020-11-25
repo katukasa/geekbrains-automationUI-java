@@ -13,7 +13,7 @@ public class AllProjectsPage extends BasePage {
     }
 
     public AllProjectsPage checkAllProjectsPageUrl(){
-        assertThat(driver.getCurrentUrl()).isEqualTo(BASE_URL + PROJECTS_PATH);
+        assertThat(driver.getCurrentUrl()).isEqualTo(BASE_URL + projects_path);
         return this;
     }
 

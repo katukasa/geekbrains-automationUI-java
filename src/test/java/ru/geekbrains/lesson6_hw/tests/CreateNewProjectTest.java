@@ -20,11 +20,12 @@ public class CreateNewProjectTest extends BaseTest {
                 .clickOnCreateNewProjectButton()
                 .checkCreateNewProjectPageUrl()
 
-// fill fields
+                .fillReqFields()
+
 // check fields
 
-//                .saveNewProject()
-//                .checkAllProjectsPageUrl()
+                .saveNewProject()
+                .checkAllProjectsPageUrl()
         ;
 
     }
