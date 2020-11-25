@@ -12,9 +12,14 @@ public class AllProjectsPage extends BasePage {
         super(driver);
     }
 
-    public AllProjectsPage checkAllProjectsPageUrl(){
+    public AllProjectsPage checkAllProjectsPageUrl() throws InterruptedException {
+        Thread.sleep(5000);
         assertThat(driver.getCurrentUrl()).isEqualTo(BASE_URL + projects_path);
         return this;
+    }
+
+    public void checkNewProjectCreated(){
+
     }
 
 }

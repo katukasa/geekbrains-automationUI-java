@@ -29,4 +29,5 @@ public class MyProjectsPage extends BasePage {
         createProjectButton.click();
         return new CreateNewProjectPage(driver);
     }
+
 }
